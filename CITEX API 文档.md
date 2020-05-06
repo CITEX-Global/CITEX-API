@@ -7,7 +7,7 @@
 ## 请求地址(base)：
 
 ```
-https://apiproject.citex.io
+https://api2.citex.io
 ```
 
 ## 限流
@@ -15,8 +15,7 @@ https://apiproject.citex.io
 
 apikey 为限流凭证
 
-API-KEY填写规则
-
+## API-KEY填写规则
 API-KEY:apikey
 
 
@@ -24,10 +23,10 @@ API-KEY:apikey
 ## 公用接口
 
 ```
-1.获取系统时间戳
-2.获取所有交易对
-3.获取所有币种信息
-4.获取单个交易对out book
+1.获取所有交易对
+2.获取所有币种信息
+3.获取系统时间戳
+4.获取单个交易对orderbook
 5.获取所有交易对行情
 6.获取K线数据
 ```
@@ -35,9 +34,9 @@ API-KEY:apikey
 
 ## 认证接口
 ```
-1.委托下单
-2.撤单
-3.查询用户币币账户余额
+1.查询用户币币账户余额
+2.委托下单
+3.撤单
 4.获取订单信息
 5.获取委托记录
 6.获取已成交记录
@@ -673,7 +672,7 @@ data       | Object    |   订单对象
 &#8195;&#8195; price       |    String   |   委托价
 &#8195;&#8195; quantity       |    String   |   委托数量
 &#8195;&#8195; executedQty       |    String   |   已成交数量
-&#8195;&#8195; matchStatus       |    String   |   订单状态<br/>0为未申报<br/>1为正在申报<br/>2为未成交<br/>3为部分成交<br/>4为完全成交<br/>5为部分成交部分撤单<br/>6为已撤<br/>7为撤单中<br/>8为失效。
+&#8195;&#8195; matchStatus       |    String   |   订单状态<br/>0为未申报<br/>1为未成交<br/>3为部分成交<br/>4为完全成交<br/>5为部分成交部分撤单<br/>6为已撤<br/>7为撤单中<br/>8为失效。
 &#8195;&#8195; orderType       |    String   |  委托类型 1：限价单 3：市价单
 &#8195;&#8195; side       |    String   |  买卖方向 1：买  -1：卖
 &#8195;&#8195; orderTime       |    String   |  委托时间
@@ -785,9 +784,9 @@ data       | List    |   订单对象
 
 •	API 访问密钥（AccessKeyId） 您申请的 APIKEY 中的AccessKey。
 
-•	签名方法（SignatureMethod） 用户计算签名的基于哈希的协议，此处使用 HmacSHA256。
+•	签名方法（Signature Method） 用户计算签名的基于哈希的协议，此处使用 HmacSHA256。
 
-•	签名版本（SignatureVersion） 签名协议的版本，此处使用2。
+•	签名版本（Signature Version） 签名协议的版本，此处使用2。
 
 •	时间戳（Timestamp） 您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区) 。
 
