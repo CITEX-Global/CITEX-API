@@ -7,7 +7,7 @@
 ## 请求地址(base)：
 
 ```
-https://api2.citex.io
+https://apiproject.citex.me/
 ```
 
 ## 限流
