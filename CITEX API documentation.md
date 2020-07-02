@@ -7,7 +7,7 @@
 ## Requested address(base)：
 
 ```
-https://api2.citex.io
+https://apiproject.citex.me/
 ```
 
 # LIMITS
