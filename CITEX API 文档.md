@@ -780,7 +780,7 @@ data       | List    |   订单对象
 
 基于安全考虑，除行情API 外的 API请求都必须进行签名运算。一个合法的请求由以下几部分组成：
 
-•	加密请求地址：base后面跟上方法名，比如base + /v1/order/orders/15485146161498。
+•	加密请求地址：'api.citex.io' 后面跟上方法名，比如'api.citex.io' + /v1/order/orders/15485146161498。
 
 •	API 访问密钥（AccessKeyId） 您申请的 APIKEY 中的AccessKey。
 
@@ -798,7 +798,7 @@ data       | List    |   订单对象
 请求示例
 
 ```
-base + /v1/order/orders/15485146161498?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=41OKsrDrG%2BizHgziwi00RbXjV3KURYXXp//7HqpciOc%3D
+api.citex.io/v1/order/orders/15485146161498?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=41OKsrDrG%2BizHgziwi00RbXjV3KURYXXp//7HqpciOc%3D
 ```
 
 并且添加API-KEY到请求头headers中
@@ -813,7 +813,7 @@ API请求在通过Internet发送的过程中极有可能被篡改。为了确保
 
 
 ```
-https://api2.citex.io/v1/order/orders/15485146161498?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=41OKsrDrG%2BizHgziwi00RbXjV3KURYXXp//7HqpciOc%3D
+https://api.citex.io/v1/order/orders/15485146161498?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=41OKsrDrG%2BizHgziwi00RbXjV3KURYXXp//7HqpciOc%3D
 ```
 请求方法（GET或POST），后面添加换行符\n
 
@@ -902,12 +902,12 @@ b0xxxxxx-c6xxxxxx-94xxxxxx-dxxxx
 6.	最终，发送到服务器的 API 请求应该为：
 
 ```
-https://api2.citex.io/v1/order/orders/15485146161498?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=41OKsrDrG%2BizHgziwi00RbXjV3KURYXXp//7HqpciOc%3D
+https://apiproject.citex.me/v1/order/orders/15485146161498?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=41OKsrDrG%2BizHgziwi00RbXjV3KURYXXp//7HqpciOc%3D
 ```
 
 以上边参数为例，如请求BALANCE余额(不包含order id)，请求链接如下：
 
 ```
-https://api2.citex.io/v1/account/balance?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=ydOk2DwcpAcujVnfPmsJDXn8b7Wl9HCDay98Bs82pa0%3D
+https://apiproject.citex.me/v1/account/balance?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=ydOk2DwcpAcujVnfPmsJDXn8b7Wl9HCDay98Bs82pa0%3D
 ```
 
