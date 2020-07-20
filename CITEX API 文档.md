@@ -407,7 +407,7 @@ API-KEY:*******************************
 
  参数   |   必填   |   类型        |        描述   
  ------------ | ------------ |-------------|-----------
-contractId       |   必填    |    String   |  合于ID
+contractId       |   必填    |    String   |  合约ID
 side       | 必填     |    String   |  委托方向 1：买  -1：卖
 price       |  必填     |    String   |  委托价格
 quantity       |  必填     |    String   |  委托数量
