@@ -412,7 +412,6 @@ side       | 必填     |    String   |  委托方向 1：买  -1：卖
 price       |  必填     |    String   |  委托价格
 quantity       |  必填     |    String   |  委托数量
 orderType       |  必填     |    String   |  委托类型 1：限价单 3：市价单
-timeInForce       |  必填     |    String   |  订单有效时期类型 默认：2
 
 - 请求示例
 
