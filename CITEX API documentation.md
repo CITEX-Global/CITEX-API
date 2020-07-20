@@ -275,8 +275,6 @@ https://apiproject.citex.me/
     String quantity 
     
     String orderType:limit order:"1",market order:"3"
-    
-    String timeInForce:"1" 
 
 * `Response` 
 ```javascript
