@@ -543,4 +543,87 @@ API requests are likely to be tampered with while being sent over the Internet.T
        SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&
        Signature=ydOk2DwcpAcujVnfPmsJDXn8b7Wl9HCDay98Bs82pa0%3D
        
+##quoteAPI--WebsocketAPI
+TIPS：websocket API now only support orderbook  and tick data subcribtion
+
+
+baseurl:
+```
+wss://socket.citex.me/socket.io/?EIO=3&transport=websocket
+```
+1.subcribe orderbook(allowed max 30 depth) example：
+```
+params 	   |   NOTNULL	 | __   	| notes
+contractId |   Y	 |              | contractID
+depth	   |   N	 |              | depth
+
+```
+```
+"subscribe",{"args":[{"topic":"snapshot","params":{"contractId":1,"depth":30}}]}
+```
+subcribe success example：
+```
+"subscribe",{"code":0,"msg":"success"}
+{'data': {'asks': [['0.027648', '22.172'],   
+ ['0.0282', '0.001'], ['0.0283', '0.001'], ['0.0284', '0.001'],
+ ...
+ ... 
+ ['0.5', '0.134'], ['1', '0.009'], ['5', '500.001']], 
+'bids': [['0.027501', '0.001'], ['0.0275', '0.01'], 
+['0.027317', '0.004'], ['0.027316', '0.912'], ['0.027312', '0.056'],
+...
+...
+... 
+['0.014', '0.218'], ['0.00009', '3'], ['0.00001', '10000']],
+ 'contractId': 1, 'historyPriceHigh': '330000',
+ 'historyPriceLow': '0.008247', 'lastPrice': '0.027514', 
+...
+... 
+'totalBidVol': '10026.017', 'totalTurnover': '22837.882736673', 
+'totalVolume': '821953.378', 'tradeDate': 20201117}, 
+'time': 1605613884480, 'topic': 'snapshot'}
+
+```
+-return result explaination:
+```
+Name 	        |      type    	   notnull	     default 	  notes  	     other
+timestamp	|     number	|Y		  |           timestamp	
+lastPrice	|     string	|Y		  |           lastprice	
+priceChangeRadio|     string	|Y	          |	     exchangeratio	
+priceHigh	|     string	|Y		  |          high	
+priceLow	|     string	|Y		  |          low	
+totalVolume	|     string	|Y		  |          24HOURvolume	
+totalTurnover   |     string	|Y		  |          24小时dealquantity	
+bids	        |     string  	|Y		  |  	                       item type: string			
+asks	        |     string  	|Y		  |                            item type: string
+
+			
+```
+
+2.subcribe tick example：
+``` 
+params	     notnull	  __	  note
+contractId	 Y		   contractID
+```
+
+```
+"subscribe",{"args":[{"topic":"tick","params":{"contractId":1}}]}
+```
+subcribe success return：
+```
+"subscribe",{"code":0,"msg":"success"}
+{'data': {'contractId': 1, 'trades': [[1605613883762670, '0.027514', '57.452', -1]]}, 'time': 1605613883996, 'topic': 'tick'}
+
+```
+-return result explaination:
+```
+Name      |  type	  |notnull	 |default	 |notes	|other
+success	      |boolean	  |Y		 |	 |      |
+data	      |object	  |Y		 |	 |      |
+trades	      |string  	  |Y		 |	 |      |item type: string
+		
+```
+
+-Received data is compressed in GZIP format. Please decompress before reading and using the data.
+       
 

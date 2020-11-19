@@ -42,7 +42,7 @@ API-KEY:apikey
 6.获取已成交记录
 ```
 
-## 公用接口
+## 公用接口--REST API
 
 ### 1.获取系统时间戳
 
@@ -909,4 +909,90 @@ https://apiproject.citex.me/v1/order/orders/15485146161498?AccessKeyId=e2xxxxxx-
 ```
 https://apiproject.citex.me/v1/account/balance?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-06-20T09%3A38%3A06&Signature=ydOk2DwcpAcujVnfPmsJDXn8b7Wl9HCDay98Bs82pa0%3D
 ```
+<br>
+
+##行情接口--Websocket接口
+说明：websocket接口支持订单簿（orderbook）、最新成交（lastdeal）的数据。
+
+
+基础url:
+```
+wss://socket.citex.me/socket.io/?EIO=3&transport=websocket
+```
+1.订阅orderbook（提供30档深度）示例：
+```
+参数名称	   |   是否必须	 | 示例  	| 备注
+contractId |   是	 |              | 交易对ID
+depth	   |   否	 |              | 档数
+
+```
+```
+"subscribe",{"args":[{"topic":"snapshot","params":{"contractId":1,"depth":30}}]}
+```
+订阅成功返回示例：
+```
+"subscribe",{"code":0,"msg":"success"}
+{'data': {'asks': [['0.027648', '22.172'],   
+ ['0.0282', '0.001'], ['0.0283', '0.001'], ['0.0284', '0.001'],
+ ...
+ ... 
+ ['0.5', '0.134'], ['1', '0.009'], ['5', '500.001']], 
+'bids': [['0.027501', '0.001'], ['0.0275', '0.01'], 
+['0.027317', '0.004'], ['0.027316', '0.912'], ['0.027312', '0.056'],
+...
+...
+... 
+['0.014', '0.218'], ['0.00009', '3'], ['0.00001', '10000']],
+ 'contractId': 1, 'historyPriceHigh': '330000',
+ 'historyPriceLow': '0.008247', 'lastPrice': '0.027514', 
+...
+... 
+'totalBidVol': '10026.017', 'totalTurnover': '22837.882736673', 
+'totalVolume': '821953.378', 'tradeDate': 20201117}, 
+'time': 1605613884480, 'topic': 'snapshot'}
+
+```
+-返回结果说明
+```
+名称  	            类型    	   是否必须	     默认值 	  备注  	     其他信息
+timestamp	|     number	|必须		  |          时间戳	
+lastPrice	|     string	|必须		  |          最新价	
+priceChangeRadio|     string	|必须	          |	     涨跌幅	
+priceHigh	|     string	|必须		  |          最高价	
+priceLow	|     string	|必须		  |          最低价	
+totalVolume	|     string	|必须		  |          24小时成交量	
+totalTurnover   |     string	|必须		  |          24小时成交额	
+bids	        |     string  	|必须		  |  	                       item 类型: string			
+asks	        |     string  	|必须		  |                            item 类型: string
+
+├─		非必须			
+```
+
+2.订阅最新成交tick数据示例：
+``` 
+参数名称	     是否必须	  示例	  备注
+contractId	 是		   交易对ID
+```
+
+```
+"subscribe",{"args":[{"topic":"tick","params":{"contractId":1}}]}
+```
+订阅成功返回示例：
+```
+"subscribe",{"code":0,"msg":"success"}
+{'data': {'contractId': 1, 'trades': [[1605613883762670, '0.027514', '57.452', -1]]}, 'time': 1605613883996, 'topic': 'tick'}
+
+```
+-返回说明
+```
+名称	      |  类型	  |是否必须	 |默认值	 |备注	|其他信息
+success	      |boolean	  |必须		 |	 |      |
+data	      |object	  |必须		 |	 |      |
+trades	      |string  	  |必须		 |	 |      |item 类型: string
+		
+```
+·接收的数据以gzip格式压缩数据，请解压后读取和使用数据
+
+
+
 
